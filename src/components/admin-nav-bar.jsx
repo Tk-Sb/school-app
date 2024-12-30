@@ -5,7 +5,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 
 export default function AdminNavBar () {
-  const [selected, setSelected] = useState("Dashboard");
+  const [selected, setSelected] = useState("الرئيسية");
 
   return (
     <motion.nav
@@ -17,31 +17,31 @@ export default function AdminNavBar () {
       <div className="flex flex-col gap-2 mx-6 my-12 ">
         <Option
           Icon={FiHome}
-          title="Dashboard"
+          title="الرئيسية"
           selected={selected}
           setSelected={setSelected}
         />
         <Option
           Icon={FiUsers}
-          title="Sales"
+          title="المستخدمين"
           selected={selected}
           setSelected={setSelected}
         />
         <Option
           Icon={FiMail}
-          title="View Site"
+          title="صندوق البريد"
           selected={selected}
           setSelected={setSelected}
         />
         <Option
           Icon={FiMonitor}
-          title="Products"
+          title="إدارة التطبيق"
           selected={selected}
           setSelected={setSelected}
         />
         <Option
           Icon={FiSettings}
-          title="Tags"
+          title="إعدادات"
           selected={selected}
           setSelected={setSelected}
         />
@@ -56,11 +56,11 @@ const Option = ({ Icon, title, selected, setSelected, notifs }) => {
     <motion.button
       layout
       onClick={() => setSelected(title)}
-      className={`relative flex h-10 w-full items-center rounded-md transition-colors ${selected === title ? "bg-indigo-100 text-indigo-800" : "text-slate-500 hover:bg-slate-100"}`}
+      className={`h-10 w-full flex justify-start items-center rounded-md transition-colors ${selected === title ? "bg-[#EFEDFB] text-[#7164FA]" : "text-black hover:bg-slate-100"}`}
     >
       <motion.div
         layout
-        className="grid h-full w-10 place-content-center text-lg"
+        className="w-10 h-full flex justify-center items-center text-lg"
       >
         <Icon />
       </motion.div>
@@ -70,7 +70,7 @@ const Option = ({ Icon, title, selected, setSelected, notifs }) => {
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.125 }}
-        className="text-xs font-medium"
+        className="text-xs font-bold"
       >
         {title}
       </motion.span>
