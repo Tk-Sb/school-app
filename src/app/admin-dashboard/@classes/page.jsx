@@ -1,4 +1,4 @@
-import AccordionButtons from "@/components/accordion";
+import AccordionButton from "@/components/accordion-button";
 
 export default function ClassesSection () {
   const grades = [
@@ -8,10 +8,10 @@ export default function ClassesSection () {
 
   return (
     <>
-      <div className="w-full h-full rounded-2xl border-[#BFBFBF] border-[3px] p-3 ">
+      <div className="w-full h-full flex flex-col gap-1 rounded-2xl border-[#BFBFBF] border-[3px] p-3 ">
         {grades.map(grade => (
           <>
-            <AccordionButtons gradeName={grade.gradeName} classes={grade.classes} ></AccordionButtons>
+            <AccordionButton gradeName={grade.gradeName} classes={grade.classes} ></AccordionButton>
           </>
         ))}
         

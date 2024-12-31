@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 
-export default function AccordionButtons ({ gradeName, classes }) {
+export default function AccordionButton ({ gradeName, classes }) {
   const [isExpanded, setIsExpanded] = useState(false)
 
   const toggleExpand = () => {
