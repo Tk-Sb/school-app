@@ -21,10 +21,10 @@ export default function AccordionButton ({ gradeName, classes }) {
 
       {isExpanded &&
         classes.map(oneClass => (
-          <div key={oneClass.classId} className="w-full h-fit flex justify-start items-center gap-2 p-2 " variant="ghost">
+          <div key={oneClass.id} className="w-full h-fit flex justify-start items-center gap-2 p-2 " variant="ghost">
             <DropdownButton></DropdownButton>
             <div className="text-xs font-semibold " >
-              {oneClass.className}
+              {oneClass.name}
             </div>
           </div>
         ))
