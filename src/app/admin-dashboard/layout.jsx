@@ -16,13 +16,12 @@ export default function DashboardLayout({ children, classes, table }) {
   return (
     <html lang="en">
       <body className={`${rubik.variable} antialiased`} >
-        <div dir="rtl" className="flex " >
+        <div dir="rtl" className="w-screen h-screen flex " >
           <div>
             <AdminNavBar></AdminNavBar>
           </div>
-          <div className="w-full flex py-24 px-6 gap-6  ">
+          <div className="w-full h-full flex py-24 px-6 gap-6  ">
             <div>
-
               {classes}
             </div>
             <div className="flex-grow ">
