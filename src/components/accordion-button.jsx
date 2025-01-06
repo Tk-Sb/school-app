@@ -4,8 +4,9 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import { FiEdit, FiMoreVertical, FiPlus, FiTrash2 } from "react-icons/fi"
 import { useCallback, useState } from 'react'
 import DrawerButton from "./drawer-button"
+import { NewClassForm } from "./forms"
 
-export default function AccordionButton ({ gradeName, classes }) {
+export default function AccordionButton ({ gradeName, classes, id }) {
   const [isExpanded, setIsExpanded] = useState(false)
 
   const toggleExpand = () => {
@@ -15,7 +16,7 @@ export default function AccordionButton ({ gradeName, classes }) {
   return (
     <div className="w-60 border-[#BFBFBF] border rounded-md cursor-pointer ">
       <div className="w-full h-fit flex justify-start items-center gap-2 p-2 " variant="ghost" >
-        <DropdownButton></DropdownButton>
+        <DropdownButton id={id} ></DropdownButton>
         <div onClick={toggleExpand} className="w-full text-xs font-semibold " >
           {gradeName}
         </div>
@@ -35,7 +36,7 @@ export default function AccordionButton ({ gradeName, classes }) {
   )
 }
 
-function DropdownButton () {
+function DropdownButton ({ id }) {
   const preventClose = useCallback((e) => {
     e.preventDefault()
     e.stopPropagation()
@@ -50,14 +51,14 @@ function DropdownButton () {
           </div>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
-          <DropdownMenuItem onSelect={preventClose} className={"flex justify-between "}>
-            <DrawerButton>
-              <button className="w-full h-fit flex justify-between gap-1" >
-                <FiPlus size={"16px"}></FiPlus>
-                إضافة
-              </button>
-            </DrawerButton>
-          </DropdownMenuItem>
+          <DrawerButton form={<NewClassForm id={id} ></NewClassForm>} header={"إضافة شعبة جديدة"} >
+            <DropdownMenuItem onSelect={preventClose} className={"flex justify-between "}>
+                <div className="w-fit h-fit flex justify-between gap-1" >
+                  <FiPlus size={"16px"}></FiPlus>
+                  إضافة
+                </div>
+            </DropdownMenuItem>
+          </DrawerButton>
           <DropdownMenuItem className={"flex justify-between "}>
             <FiEdit></FiEdit>
             تعديل

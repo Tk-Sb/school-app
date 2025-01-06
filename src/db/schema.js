@@ -8,5 +8,5 @@ export const gradeLevels = pgTable('grade_levels', {
 export const classes = pgTable('classes', {  
   id: serial('id').primaryKey(),  
   name: varchar('class_name', { length: 50 }).notNull(),  
-  gradeLevelId: integer("grade_level_id").references(() => gradeLevels.id)
+  gradeLevelId: integer("grade_level_id").references(() => gradeLevels.id).notNull()
 })
