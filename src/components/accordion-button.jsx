@@ -6,7 +6,7 @@ import { useCallback, useState } from 'react'
 import DrawerButton from "./drawer-button"
 import { EditGradeNameForm, NewClassForm } from "./forms"
 
-export default function AccordionButton ({ gradeName, classes, id }) {
+export default function AccordionButton ({ grade }) {
   const [isExpanded, setIsExpanded] = useState(false)
 
   const toggleExpand = () => {
@@ -16,14 +16,14 @@ export default function AccordionButton ({ gradeName, classes, id }) {
   return (
     <div className="w-60 border-[#BFBFBF] border rounded-md cursor-pointer ">
       <div className="w-full h-fit flex justify-start items-center gap-2 p-2 " variant="ghost" >
-        <DropdownButton id={id} ></DropdownButton>
+        <DropdownButton id={grade.id} baseValue={grade.name} ></DropdownButton>
         <div onClick={toggleExpand} className="w-full text-xs font-semibold " >
-          {gradeName}
+          {grade.name}
         </div>
       </div>
 
       {isExpanded &&
-        classes.map(oneClass => (
+        grade.classes.map(oneClass => (
           <div key={oneClass.id} className="w-full h-fit flex justify-start items-center gap-2 p-2 " variant="ghost">
             <DropdownButton></DropdownButton>
             <div className="text-xs font-semibold " >
@@ -36,7 +36,7 @@ export default function AccordionButton ({ gradeName, classes, id }) {
   )
 }
 
-function DropdownButton ({ id }) {
+function DropdownButton ({ id, baseValue }) {
   const preventClose = useCallback((e) => {
     e.preventDefault()
     e.stopPropagation()
@@ -59,7 +59,7 @@ function DropdownButton ({ id }) {
                 </div>
             </DropdownMenuItem>
           </DrawerButton>
-          <DrawerButton form={<EditGradeNameForm id={id} value={id} ></EditGradeNameForm>} header={"تعديل الاسم"} >
+          <DrawerButton form={<EditGradeNameForm id={id} value={baseValue} ></EditGradeNameForm>} header={"تعديل الاسم"} >
             <DropdownMenuItem onSelect={preventClose} className={"flex justify-between "}>
               <div className="w-full h-fit flex justify-between gap-1" >
                 <FiEdit size={"16px"}></FiEdit>

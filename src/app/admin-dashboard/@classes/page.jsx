@@ -18,7 +18,7 @@ export default async function ClassesSection () {
       name: cls.name  
     }))  
   }))
-  
+
   return (
     <>
       <div className="w-full h-full flex flex-col rounded-2xl border-[#BFBFBF] border-[3px] ">
@@ -30,7 +30,7 @@ export default async function ClassesSection () {
         <div className="w-full h-fit flex flex-col gap-1 p-3 overflow-y-auto " >
           {result.map(grade => (
             <>
-              <AccordionButton key={grade.id} garde={grade} id={grade.id} gradeName={grade.name} classes={grade.classes} ></AccordionButton>
+              <AccordionButton key={grade.id} grade={grade} ></AccordionButton>
             </>
           ))}
         </div>

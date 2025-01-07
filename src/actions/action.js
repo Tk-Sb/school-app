@@ -2,6 +2,7 @@
 
 import { db } from "@/db/db";
 import { classes, gradeLevels } from "@/db/schema";
+import { eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 
 export async function AddNewGrade (pv, formData) {
@@ -27,6 +28,22 @@ export async function AddNewClass (pv, formData) {
   }
   try {
     await db.insert(classes).values(data)
+    console.log("data inserted")
+    revalidatePath("/admin-dashboard")
+  }
+  catch (err) {
+    console.log("error inserting data")
+    console.log(err)
+  }
+}
+
+export async function EditGradeLevelName (pv, formData) {
+  const data = {
+    id: pv,
+    newName: formData.get("new-grade-name"),
+  }
+  try {
+    await db.update(gradeLevels).set({name: data.newName}).where(eq(gradeLevels.id, data.id))
     console.log("data inserted")
     revalidatePath("/admin-dashboard")
   }
