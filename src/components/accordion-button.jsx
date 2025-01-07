@@ -4,7 +4,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import { FiEdit, FiMoreVertical, FiPlus, FiTrash2 } from "react-icons/fi"
 import { useCallback, useState } from 'react'
 import DrawerButton from "./drawer-button"
-import { NewClassForm } from "./forms"
+import { EditGradeNameForm, NewClassForm } from "./forms"
 
 export default function AccordionButton ({ gradeName, classes, id }) {
   const [isExpanded, setIsExpanded] = useState(false)
@@ -53,16 +53,20 @@ function DropdownButton ({ id }) {
         <DropdownMenuContent>
           <DrawerButton form={<NewClassForm id={id} ></NewClassForm>} header={"إضافة شعبة جديدة"} >
             <DropdownMenuItem onSelect={preventClose} className={"flex justify-between "}>
-                <div className="w-fit h-fit flex justify-between gap-1" >
+                <div className="w-full h-fit flex justify-between gap-1" >
                   <FiPlus size={"16px"}></FiPlus>
                   إضافة
                 </div>
             </DropdownMenuItem>
           </DrawerButton>
-          <DropdownMenuItem className={"flex justify-between "}>
-            <FiEdit></FiEdit>
-            تعديل
-          </DropdownMenuItem>
+          <DrawerButton form={<EditGradeNameForm id={id} value={id} ></EditGradeNameForm>} header={"تعديل الاسم"} >
+            <DropdownMenuItem onSelect={preventClose} className={"flex justify-between "}>
+              <div className="w-full h-fit flex justify-between gap-1" >
+                <FiEdit size={"16px"}></FiEdit>
+                تعديل
+              </div>
+            </DropdownMenuItem>
+          </DrawerButton>
           <DropdownMenuItem className={"flex justify-between "}>
             <FiTrash2></FiTrash2>
             حذف
