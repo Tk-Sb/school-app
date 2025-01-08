@@ -1,8 +1,8 @@
 'use client'
 
-import { AddNewClass, AddNewGrade, EditGradeLevelName } from "@/actions/action"
+import { AddNewClass, AddNewGrade, Delete, EditGradeLevelName } from "@/actions/action"
 import { useActionState, useState } from "react"
-import { FiEdit, FiPlus } from "react-icons/fi"
+import { FiEdit, FiPlus, FiTrash2, FiX } from "react-icons/fi"
 import Button from "./ui/button"
 
 function NewGradeForm () {
@@ -60,4 +60,24 @@ function EditGradeNameForm ({ id, value }) {
   )
 }
 
-export { NewGradeForm, NewClassForm, EditGradeNameForm }
+function DeleteWarning ({ id }) {
+  const [state, formAction, isPending] = useActionState(Delete, id)
+
+  return (
+    <>
+      <div className="w-full h-fit flex flex-col justify-center items-start gap-2 p-4 ">
+        <div className="w-full h-fit flex flex-col justify-start items-start gap-2">
+          <div>
+            متأكد من القيام بعملية الحذف؟
+          </div>
+        </div>
+        <div className="flex gap-2" >
+          <Button title={'حذف'} icon={<FiTrash2 color="red"></FiTrash2>} textColor={"red"} borderColor={"red"} ></Button>
+          <Button title={'إلغاء'} icon={<FiX></FiX>} ></Button>
+        </div>
+      </div>
+    </>
+  )
+}
+
+export { NewGradeForm, NewClassForm, EditGradeNameForm, DeleteWarning }

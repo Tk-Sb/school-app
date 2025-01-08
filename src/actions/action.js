@@ -52,3 +52,7 @@ export async function EditGradeLevelName (pv, formData) {
     console.log(err)
   }
 }
+
+export async function Delete (pv, formData) {
+
+}
