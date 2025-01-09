@@ -11,7 +11,7 @@ export default async function ClassesSection () {
   const allClasses = await db.select().from(classes)
 
   // reformat the fetched data
-  const result = allGrades.map(grade => ({  
+  const reformattedData = allGrades.map(grade => ({  
     id: grade.id,  
     name: grade.name,  
     classes: allClasses.filter(cls => cls.gradeLevelId === grade.id).map(cls => ({  
@@ -19,6 +19,11 @@ export default async function ClassesSection () {
       name: cls.name  
     }))  
   }))
+
+  // sorting grades by name
+  const sortedData = reformattedData.sort((a, b) => {
+    return a.name.localeCompare(b.name, 'ar')
+  })
 
   return (
     <>
@@ -29,7 +34,7 @@ export default async function ClassesSection () {
           </DrawerButton>
         </div>
         <div className="w-full h-fit flex flex-col gap-1 p-2 overflow-y-auto " >
-          {result.map(grade => (
+          {sortedData.map(grade => (
             <>
               <AccordionButton key={grade.id} grade={grade} ></AccordionButton>
             </>

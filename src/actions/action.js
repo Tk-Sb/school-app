@@ -44,7 +44,7 @@ export async function EditGradeLevelName (pv, formData) {
   }
   try {
     await db.update(gradeLevels).set({name: data.newName}).where(eq(gradeLevels.id, data.id))
-    console.log("data inserted")
+    console.log("data updated")
     revalidatePath("/admin-dashboard")
   }
   catch (err) {
@@ -54,5 +54,16 @@ export async function EditGradeLevelName (pv, formData) {
 }
 
 export async function Delete (pv, formData) {
-
+  const data = {
+    id: pv
+  }
+  try {
+    await db.delete(gradeLevels).where(eq(gradeLevels.id, data.id))
+    console.log("data deleted")
+    revalidatePath("/admin-dashboard")
+  }
+  catch (err) {
+    console.log("error inserting data")
+    console.log(err)
+  }
 }

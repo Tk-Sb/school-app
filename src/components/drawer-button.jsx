@@ -6,7 +6,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 
-export default function DrawerButton ({ children, form, header }) {
+export default function DrawerButton ({ children, form, header, cancelButton }) {
   
   return (
     <>

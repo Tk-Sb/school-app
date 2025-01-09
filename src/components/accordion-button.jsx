@@ -1,10 +1,11 @@
 'use client'
 
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
-import { FiEdit, FiMoreVertical, FiPlus, FiTrash2 } from "react-icons/fi"
+import { FiEdit, FiMoreVertical, FiPlus, FiTrash2, FiX } from "react-icons/fi"
 import { useCallback, useState } from 'react'
 import DrawerButton from "./drawer-button"
 import { DeleteWarning, EditGradeNameForm, NewClassForm } from "./forms"
+import Button from "./ui/button"
 
 export default function AccordionButton ({ grade }) {
   const [isExpanded, setIsExpanded] = useState(false)
