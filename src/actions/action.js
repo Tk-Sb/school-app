@@ -40,7 +40,7 @@ export async function AddNewClass (pv, formData) {
 export async function EditGradeLevelName (pv, formData) {
   const data = {
     id: pv,
-    newName: formData.get("new-grade-name"),
+    newName: formData.get("new-name"),
   }
   try {
     await db.update(gradeLevels).set({name: data.newName}).where(eq(gradeLevels.id, data.id))
@@ -53,12 +53,44 @@ export async function EditGradeLevelName (pv, formData) {
   }
 }
 
-export async function Delete (pv, formData) {
+export async function EditClassName (pv, formData) {
+  const data = {
+    id: pv,
+    newName: formData.get("new-name"),
+  }
+  try {
+    await db.update(classes).set({name: data.newName}).where(eq(classes.id, data.id))
+    console.log("data updated")
+    revalidatePath("/admin-dashboard")
+  }
+  catch (err) {
+    console.log("error inserting data")
+    console.log(err)
+  }
+}
+
+
+export async function DeleteGrade (pv, formData) {
   const data = {
     id: pv
   }
   try {
     await db.delete(gradeLevels).where(eq(gradeLevels.id, data.id))
+    console.log("data deleted")
+    revalidatePath("/admin-dashboard")
+  }
+  catch (err) {
+    console.log("error inserting data")
+    console.log(err)
+  }
+}
+
+export async function DeleteClass (pv, formData) {
+  const data = {
+    id: pv
+  }
+  try {
+    await db.delete(classes).where(eq(classes.id, data.id))
     console.log("data deleted")
     revalidatePath("/admin-dashboard")
   }

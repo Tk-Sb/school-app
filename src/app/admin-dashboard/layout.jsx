@@ -20,7 +20,7 @@ export default function DashboardLayout({ classes, table }) {
           <div>
             <AdminNavBar></AdminNavBar>
           </div>
-          <div className="w-full h-full flex py-24 px-6 gap-6  ">
+          <div className="w-full h-full flex py-24 px-6 gap-6 ">
             <div>
               {classes}
             </div>

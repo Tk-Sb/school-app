@@ -5,7 +5,6 @@ import { FiEdit, FiMoreVertical, FiPlus, FiTrash2, FiX } from "react-icons/fi"
 import { useCallback, useState } from 'react'
 import DrawerButton from "./drawer-button"
 import { DeleteWarning, EditGradeNameForm, NewClassForm } from "./forms"
-import Button from "./ui/button"
 
 export default function AccordionButton ({ grade }) {
   const [isExpanded, setIsExpanded] = useState(false)
@@ -13,18 +12,18 @@ export default function AccordionButton ({ grade }) {
   return (
     <div className="w-60 border-[#BFBFBF] border-[3px] rounded-lg cursor-pointer ">
       <div className="w-full h-fit flex justify-start items-center px-2 gap-2 " >
-        <DropdownButton id={grade.id} baseValue={grade.name} ></DropdownButton>
+        <DropdownButton id={grade.id} baseValue={grade.name} subKey={false} ></DropdownButton>
         <div onClick={() => setIsExpanded(!isExpanded)} className="w-full text-xs font-semibold select-none py-2 " >
           {grade.name}
         </div>
       </div>
 
       {isExpanded &&
-        grade.classes.map(oneClass => (
-          <div key={oneClass.id} className="w-full h-fit flex justify-start items-center px-2 gap-2">
-            <DropdownButton></DropdownButton>
+        grade.classes.map(cls => (
+          <div key={cls.id} className="w-full h-fit flex justify-start items-center px-2 gap-2">
+            <DropdownButton id={cls.id} baseValue={cls.name} subKey={true} ></DropdownButton>
             <div className="w-full text-xs font-semibold select-none py-2" >
-              {oneClass.name}
+              {cls.name}
             </div>
           </div>
         ))
@@ -33,7 +32,7 @@ export default function AccordionButton ({ grade }) {
   )
 }
 
-function DropdownButton ({ id, baseValue }) {
+function DropdownButton ({ id, baseValue, subKey }) {
 
   const preventClose = useCallback((e) => {
     e.preventDefault()
@@ -49,15 +48,18 @@ function DropdownButton ({ id, baseValue }) {
           </div>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
-          <DrawerButton form={<NewClassForm id={id} ></NewClassForm>} header={"إضافة شعبة جديدة"} >
-            <DropdownMenuItem onSelect={preventClose} className={"flex justify-between "}>
-              <div className="w-full h-fit flex justify-between gap-1" >
-                <FiPlus size={"16px"}></FiPlus>
-                إضافة
-              </div>
-            </DropdownMenuItem>
-          </DrawerButton>
-          <DrawerButton form={<EditGradeNameForm id={id} value={baseValue} ></EditGradeNameForm>} header={"تعديل الاسم"} >
+          {!subKey && (
+            <DrawerButton form={<NewClassForm id={id} ></NewClassForm>} header={"إضافة شعبة جديدة"} >
+              <DropdownMenuItem onSelect={preventClose} className={"flex justify-between "}>
+                <div className="w-full h-fit flex justify-between gap-1" >
+                  <FiPlus size={"16px"}></FiPlus>
+                  إضافة
+                </div>
+              </DropdownMenuItem>
+            </DrawerButton>
+            )
+          }
+          <DrawerButton form={<EditGradeNameForm id={id} value={baseValue} isClass={subKey} />} header={"تعديل الاسم"} >
             <DropdownMenuItem onSelect={preventClose} className={"flex justify-between "}>
               <div className="w-full h-fit flex justify-between gap-1" >
                 <FiEdit size={"16px"}></FiEdit>
@@ -65,7 +67,7 @@ function DropdownButton ({ id, baseValue }) {
               </div>
             </DropdownMenuItem>
           </DrawerButton>
-          <DrawerButton form={<DeleteWarning id={id} value={baseValue} ></DeleteWarning>} header={"حذف!"} >
+          <DrawerButton form={<DeleteWarning id={id} value={baseValue} isClass={subKey} />} header={"حذف!"} >
             <DropdownMenuItem onSelect={preventClose} className={"flex justify-between "}>
               <div className="w-full h-fit flex justify-between gap-1" >
                 <FiTrash2 size={"16px"}></FiTrash2>
