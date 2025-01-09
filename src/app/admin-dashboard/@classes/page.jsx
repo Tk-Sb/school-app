@@ -11,13 +11,13 @@ export default async function ClassesSection () {
   const allClasses = await db.select().from(classes)
 
   // reformat the fetched data
-  const reformattedData = allGrades.map(grade => ({  
-    id: grade.id,  
-    name: grade.name,  
-    classes: allClasses.filter(cls => cls.gradeLevelId === grade.id).map(cls => ({  
-      id: cls.id,  
-      name: cls.name  
-    }))  
+  const reformattedData = allGrades.map(grade => ({
+    id: grade.id,
+    name: grade.name,
+    classes: allClasses.filter(cls => cls.gradeLevelId === grade.id).map(cls => ({
+      id: cls.id,
+      name: cls.name
+    }))
   }))
 
   // sorting grades by name
