@@ -10,3 +10,8 @@ export const classes = pgTable('classes', {
   name: varchar('class_name', { length: 50 }).notNull(),
   gradeLevelId: integer("grade_level_id").references(() => gradeLevels.id, {onDelete: "cascade"}).notNull()
 })
+
+export const publicAnnouncements = pgTable('public_announcements', {
+  id: serial('id').primaryKey(),
+  content: varchar('content', { length: 255 }).notNull(),
+})
