@@ -1,5 +1,5 @@
 import AccordionButton from "@/components/accordion-button";
-import DrawerButton from "@/components/drawer-button";
+import DialogForm from "@/components/dialog-form";
 import { NewGradeForm } from "@/components/forms";
 import Button from "@/components/ui/button";
 import { db } from "@/db/db";
@@ -29,9 +29,9 @@ export default async function ClassesSection () {
     <>
       <div className="w-full h-full flex flex-col justify-start rounded-2xl border-[#BFBFBF] border-[3px] ">
         <div className="w-64 h-fit flex justify-between items-center p-2 border-[#BFBFBF] border-b-[3px] " >
-          <DrawerButton form={<NewGradeForm></NewGradeForm>} header={"إضافة صف جديد"}>
+          <DialogForm form={<NewGradeForm></NewGradeForm>} header={"إضافة صف جديد"}>
             <Button title={'إضافة'} icon={<FiPlus></FiPlus>} ></Button>
-          </DrawerButton>
+          </DialogForm>
           <div className="text-base font-semibold ">
             الصفوف و الشعب
           </div>

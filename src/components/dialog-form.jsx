@@ -1,3 +1,5 @@
+'use client'
+
 import {
   Dialog,
   DialogContent,
@@ -6,13 +8,15 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 
-export default function DrawerButton ({ children, form, header, cancelButton }) {
+export default function DialogForm ({ children, form, header }) {
   
   return (
     <>
       <Dialog>
         <DialogTrigger asChild>
-          {children}
+          <div>
+            {children}
+          </div>
         </DialogTrigger>
         <DialogContent dir="rtl" className="p-0 gap-0 sm:max-w-[425px] ">
           <DialogHeader className={"border-[#BFBFBF] border-b-[3px] py-4 pt-10 "}>

@@ -1,7 +1,7 @@
 'use server'
 
 import { db } from "@/db/db";
-import { classes, gradeLevels } from "@/db/schema";
+import { classes, gradeLevels, publicAnnouncements } from "@/db/schema";
 import { eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 
@@ -48,7 +48,7 @@ export async function EditGradeLevelName (pv, formData) {
     revalidatePath("/admin-dashboard")
   }
   catch (err) {
-    console.log("error inserting data")
+    console.log("error updating data")
     console.log(err)
   }
 }
@@ -64,7 +64,7 @@ export async function EditClassName (pv, formData) {
     revalidatePath("/admin-dashboard")
   }
   catch (err) {
-    console.log("error inserting data")
+    console.log("error updating data")
     console.log(err)
   }
 }
@@ -80,7 +80,7 @@ export async function DeleteGrade (pv, formData) {
     revalidatePath("/admin-dashboard")
   }
   catch (err) {
-    console.log("error inserting data")
+    console.log("error deleting data")
     console.log(err)
   }
 }
@@ -92,6 +92,21 @@ export async function DeleteClass (pv, formData) {
   try {
     await db.delete(classes).where(eq(classes.id, data.id))
     console.log("data deleted")
+    revalidatePath("/admin-dashboard")
+  }
+  catch (err) {
+    console.log("error deleting data")
+    console.log(err)
+  }
+}
+
+export async function AddNewPublicAnnouncement (pv, formData) {
+  const data = {
+    content: formData.get("content")
+  }
+  try {
+    await db.insert(publicAnnouncements).values(data)
+    console.log("data inserted")
     revalidatePath("/admin-dashboard")
   }
   catch (err) {

@@ -1,10 +1,10 @@
 'use client'
 
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
-import { FiEdit, FiMoreVertical, FiPlus, FiTrash2, FiX } from "react-icons/fi"
+import { FiEdit, FiMoreVertical, FiPlus, FiTrash2 } from "react-icons/fi"
 import { useCallback, useState } from 'react'
-import DrawerButton from "./drawer-button"
-import { DeleteWarning, EditGradeNameForm, NewClassForm } from "./forms"
+import { DeleteWarning, EditGradeAndClassNameForm, NewClassForm } from "./forms"
+import DialogForm from "./dialog-form"
 
 export default function AccordionButton ({ grade }) {
   const [isExpanded, setIsExpanded] = useState(false)
@@ -49,32 +49,32 @@ function DropdownButton ({ id, baseValue, subKey }) {
         </DropdownMenuTrigger>
         <DropdownMenuContent>
           {!subKey && (
-            <DrawerButton form={<NewClassForm id={id} ></NewClassForm>} header={"إضافة شعبة جديدة"} >
+            <DialogForm form={<NewClassForm id={id} ></NewClassForm>} header={"إضافة شعبة جديدة"} >
               <DropdownMenuItem onSelect={preventClose} className={"flex justify-between "}>
                 <div className="w-full h-fit flex justify-between gap-1" >
                   <FiPlus size={"16px"}></FiPlus>
                   إضافة
                 </div>
               </DropdownMenuItem>
-            </DrawerButton>
+            </DialogForm>
             )
           }
-          <DrawerButton form={<EditGradeNameForm id={id} value={baseValue} isClass={subKey} />} header={"تعديل الاسم"} >
+          <DialogForm form={<EditGradeAndClassNameForm id={id} value={baseValue} isClass={subKey} />} header={"تعديل الاسم"} >
             <DropdownMenuItem onSelect={preventClose} className={"flex justify-between "}>
               <div className="w-full h-fit flex justify-between gap-1" >
                 <FiEdit size={"16px"}></FiEdit>
                 تعديل
               </div>
             </DropdownMenuItem>
-          </DrawerButton>
-          <DrawerButton form={<DeleteWarning id={id} value={baseValue} isClass={subKey} />} header={"حذف!"} >
+          </DialogForm>
+          <DialogForm form={<DeleteWarning id={id} value={baseValue} isClass={subKey} />} header={"حذف!"} >
             <DropdownMenuItem onSelect={preventClose} className={"flex justify-between "}>
               <div className="w-full h-fit flex justify-between gap-1" >
                 <FiTrash2 size={"16px"}></FiTrash2>
                 حذف
               </div>
             </DropdownMenuItem>
-          </DrawerButton>
+          </DialogForm>
         </DropdownMenuContent>
       </DropdownMenu>
     </>

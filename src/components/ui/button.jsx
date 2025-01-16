@@ -1,3 +1,4 @@
+'use client'
 
 export default function Button ({ title, icon, disabled = false, textColor, borderColor }) {
 

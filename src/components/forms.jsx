@@ -1,8 +1,8 @@
 'use client'
 
-import { AddNewClass, AddNewGrade, DeleteClass, DeleteGrade, EditClassName, EditGradeLevelName } from "@/actions/action"
+import { AddNewClass, AddNewGrade, AddNewPublicAnnouncement, DeleteClass, DeleteGrade, EditClassName, EditGradeLevelName } from "@/actions/action"
 import { useActionState, useState } from "react"
-import { FiEdit, FiPlus, FiTrash2, FiX } from "react-icons/fi"
+import { FiEdit, FiPlus, FiTrash2 } from "react-icons/fi"
 import Button from "./ui/button"
 
 function NewGradeForm () {
@@ -41,7 +41,7 @@ function NewClassForm ({ id }) {
   )
 }
 
-function EditGradeNameForm ({ id, value, isClass }) {
+function EditGradeAndClassNameForm ({ id, value, isClass }) {
   const [state, formAction, isPending] = useActionState(
     isClass ? EditClassName : EditGradeLevelName, 
     id
@@ -97,4 +97,22 @@ function DeleteWarning ({ id, baseValue, isClass }) {
   )
 }
 
-export { NewGradeForm, NewClassForm, EditGradeNameForm, DeleteWarning }
+function NewPublicAnnouncementForm () {
+  const [state, formAction, isPending] = useActionState(AddNewPublicAnnouncement, null)
+  
+  return (
+    <>
+      <form action={formAction} className="w-full h-fit flex flex-col justify-center items-start gap-2 p-4 ">
+        <div className="w-full h-fit flex flex-col justify-start items-start gap-2">
+          <label htmlFor="content" className="text-base font-semibold ">
+            الإعلان
+          </label>
+          <textarea id="content" required name="content" placeholder="محتوى الإعلان" className="w-full h-fit p-2 text-right border-[#BFBFBF] border-[3px] rounded-lg outline-none " />
+        </div>
+        <Button title={'إضافة'} icon={<FiPlus></FiPlus>} ></Button>
+      </form>
+    </>
+  )
+}
+
+export { NewGradeForm, NewClassForm, EditGradeAndClassNameForm, DeleteWarning, NewPublicAnnouncementForm }
