@@ -15,24 +15,14 @@ import {
   TableRow,
 } from "@/components/ui/table"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import DrawerButton from "../dialog-form"
 import Button from "./button"
-import { NewGradeForm, NewPublicAnnouncementForm } from "../forms"
+import { EditPublicAnnouncementForm, NewPublicAnnouncementForm, PublicAnnouncementDeleteWarning } from "../forms"
 import { FiEdit, FiPlus, FiTrash2 } from "react-icons/fi"
 
 export default function DataTable ({ columns, data }) {
   const [rowSelection, setRowSelection] = useState({})
-  const selectedRows = {}
-  
-  // Loop through the keys in the rowSelection object
-  for (let key in rowSelection) {
-    if (data[key]) {
-      // Use the real id from the data array as the new key
-      selectedRows[data[key].id] = rowSelection[key]
-    }
-  }
-  
   const table = useReactTable({
     data,
     columns,
@@ -43,6 +33,10 @@ export default function DataTable ({ columns, data }) {
     }
   })
   
+  const result = Object.keys(rowSelection).map((row) => {
+    return data[row]?.id
+  })
+  
   return (
     <>
       <div className="w-full h-fit flex justify-between items-center p-2 border-[#BFBFBF] border-b-[3px] " >
@@ -50,11 +44,11 @@ export default function DataTable ({ columns, data }) {
           <DrawerButton form={<NewPublicAnnouncementForm></NewPublicAnnouncementForm>} header={"إعلان عام"}>
             <Button title={'إضافة'} icon={<FiPlus></FiPlus>} ></Button>
           </DrawerButton>
-          <DrawerButton form={<NewGradeForm></NewGradeForm>} header={"إضافة صف جديد"}>
-            <Button disabled={Object.keys(selectedRows).length !== 1} title={'تعديل'} icon={<FiEdit></FiEdit>} ></Button>
+          <DrawerButton form={<EditPublicAnnouncementForm id={data[Object.keys(rowSelection)]?.id} value={data[Object.keys(rowSelection)]?.content} />} header={"تعديل الإعلان"}>
+            <Button disabled={Object.keys(rowSelection).length !== 1} title={'تعديل'} icon={<FiEdit></FiEdit>} ></Button>
           </DrawerButton>
-          <DrawerButton form={<NewGradeForm></NewGradeForm>} header={"إضافة صف جديد"}>
-            <Button disabled={!Object.keys(selectedRows).length} title={'حذف'} icon={<FiTrash2></FiTrash2>} ></Button>
+          <DrawerButton form={<PublicAnnouncementDeleteWarning ids={result} />} header={"حذف!"}>
+            <Button disabled={!Object.keys(rowSelection).length} title={'حذف'} icon={<FiTrash2></FiTrash2>} ></Button>
           </DrawerButton>
         </div>
         <div className="text-base font-semibold ">

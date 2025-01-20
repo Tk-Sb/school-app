@@ -1,6 +1,6 @@
 'use client'
 
-import { AddNewClass, AddNewGrade, AddNewPublicAnnouncement, DeleteClass, DeleteGrade, EditClassName, EditGradeLevelName } from "@/actions/action"
+import { AddNewClass, AddNewGrade, AddNewPublicAnnouncement, DeleteClass, DeleteGrade, DeletePublicAnnouncement, EditClassName, EditGradeLevelName, EditPublicAnnouncement } from "@/actions/action"
 import { useActionState, useState } from "react"
 import { FiEdit, FiPlus, FiTrash2 } from "react-icons/fi"
 import Button from "./ui/button"
@@ -115,4 +115,53 @@ function NewPublicAnnouncementForm () {
   )
 }
 
-export { NewGradeForm, NewClassForm, EditGradeAndClassNameForm, DeleteWarning, NewPublicAnnouncementForm }
+function EditPublicAnnouncementForm ({ id, value }) {
+  const [state, formAction, isPending] = useActionState(EditPublicAnnouncement, id)
+  const [baseValue, setBaseValue] = useState(value)
+  
+  return (
+    <>
+      <form action={formAction} className="w-full h-fit flex flex-col justify-center items-start gap-2 p-4 ">
+        <div className="w-full h-fit flex flex-col justify-start items-start gap-2">
+          <label htmlFor="content" className="text-base font-semibold ">
+              الإعلان
+          </label>
+          <textarea id="content" onChange={(event) => setBaseValue(event.target.value)} value={baseValue} required name="new-content" placeholder="محتوى الإعلان" className="w-full h-fit p-2 text-right border-[#BFBFBF] border-[3px] rounded-lg outline-none " />
+        </div>
+        <Button title={'تعديل'} icon={<FiEdit></FiEdit>} ></Button>
+      </form>
+    </>
+  )
+}
+
+function PublicAnnouncementDeleteWarning ({ ids }) {
+  const [state, formAction, isPending] = useActionState(DeletePublicAnnouncement,  ids)
+
+  return (
+    <>
+      <form action={formAction} className="w-full h-fit flex flex-col justify-center items-start gap-4 p-4 ">
+        <div className="w-full h-fit flex flex-col justify-start items-start">
+          <div className="text-base font-semibold ">
+            متأكد من القيام بعملية الحذف؟
+          </div>
+          <div className="text-sm opacity-50 ">
+            المعلومات المحذوفة غير قابلة للاسترجاع !!
+          </div>
+        </div>
+        <div className="flex gap-2" >
+          <Button title={'حذف'} icon={<FiTrash2 color="red"></FiTrash2>} textColor={"red"} borderColor={"red"} ></Button>
+        </div>
+      </form>
+    </>
+  )
+}
+
+export { 
+  NewGradeForm, 
+  NewClassForm, 
+  EditGradeAndClassNameForm, 
+  DeleteWarning, 
+  NewPublicAnnouncementForm, 
+  EditPublicAnnouncementForm, 
+  PublicAnnouncementDeleteWarning 
+}

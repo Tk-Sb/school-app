@@ -38,9 +38,7 @@ export default async function ClassesSection () {
         </div>
         <div className="w-full h-fit flex flex-col gap-1 p-2 overflow-y-auto " >
           {sortedData.map(grade => (
-            <>
-              <AccordionButton key={grade.id} grade={grade} ></AccordionButton>
-            </>
+            <AccordionButton key={grade.id} grade={grade} ></AccordionButton>
           ))}
         </div>
       </div>
