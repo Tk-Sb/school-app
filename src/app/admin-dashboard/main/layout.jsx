@@ -1,6 +1,6 @@
 import { Rubik } from "next/font/google";
 import AdminNavBar from "@/components/admin-nav-bar";
-import "../globals.css";
+import "../../globals.css";
 
 const rubik = Rubik({
   variable: "--font-rubik",
@@ -17,11 +17,11 @@ export default function DashboardLayout({ classes, table }) {
     <html lang="en">
       <body className={`${rubik.variable} antialiased`} >
         <div dir="rtl" className="w-screen h-screen flex " >
-          <div>
+          <nav className="min-w-60 h-screen border-l-[3px] border-[#BFBFBF] bg-white hidden lg:block ">
             <AdminNavBar></AdminNavBar>
-          </div>
-          <div className="w-full h-full flex py-24 px-6 gap-6 ">
-            <div>
+          </nav>
+          <div className="w-full h-full flex py-24 px-6 gap-6 flex-wrap ">
+            <div className="lg:min-w-64 w-full lg:w-fit ">
               {classes}
             </div>
             <div className="flex-grow ">

@@ -10,7 +10,7 @@ export default function AccordionButton ({ grade }) {
   const [isExpanded, setIsExpanded] = useState(false)
 
   return (
-    <div className="w-60 border-[#BFBFBF] border-[3px] rounded-lg cursor-pointer ">
+    <div className="w-full border-[#BFBFBF] border-[3px] rounded-lg cursor-pointer ">
       <div className="w-full h-fit flex justify-start items-center px-2 gap-2 " >
         <DropdownButton id={grade.id} baseValue={grade.name} subKey={false} ></DropdownButton>
         <div onClick={() => setIsExpanded(!isExpanded)} className="w-full text-xs font-semibold select-none py-2 " >

@@ -2,56 +2,61 @@
 
 import { FiHome, FiMail, FiMonitor, FiSettings, FiUsers } from "react-icons/fi";
 import { useState } from "react";
+import Link from "next/link";
 
 export default function AdminNavBar () {
   const [selected, setSelected] = useState("الرئيسية");
 
   return (
-    <nav className="w-60 h-screen border-l-[3px] border-[#BFBFBF] bg-white " >
+    <>
       <TitleSection />
-
       <div className="flex flex-col gap-2 mx-6 my-12 ">
         <Option
           Icon={FiHome}
           title="الرئيسية"
           selected={selected}
           setSelected={setSelected}
+          link={"/admin-dashboard/main"}
         />
         <Option
           Icon={FiUsers}
           title="المستخدمين"
           selected={selected}
           setSelected={setSelected}
+          link={"/admin-dashboard/users"}
         />
         <Option
           Icon={FiMail}
           title="صندوق البريد"
           selected={selected}
           setSelected={setSelected}
+          link={"/"}
         />
         <Option
           Icon={FiMonitor}
           title="إدارة التطبيق"
           selected={selected}
           setSelected={setSelected}
+          link={"/"}
         />
         <Option
           Icon={FiSettings}
           title="إعدادات"
           selected={selected}
           setSelected={setSelected}
+          link={"/"}
         />
       </div>
-
-    </nav>
+    </>
   );
 };
 
-const Option = ({ Icon, title, selected, setSelected, notifs }) => {
+const Option = ({ Icon, title, selected, setSelected, link, notifs }) => {
   return (
-    <button
+    <Link
+      href={link}
       onClick={() => setSelected(title)}
-      className={`h-10 w-full flex justify-start items-center rounded-md transition-colors ${selected === title ? "bg-[#EFEDFB] text-[#7164FA]" : "text-black hover:bg-slate-100"}`} 
+      className={`h-10 w-full flex justify-start items-center relative rounded-md transition-colors ${selected === title ? "bg-[#EFEDFB] text-[#7164FA]" : "text-black hover:bg-slate-100"}`} 
     >
       <div className="w-10 h-full flex justify-center items-center text-lg" >
         <Icon />
@@ -60,11 +65,11 @@ const Option = ({ Icon, title, selected, setSelected, notifs }) => {
         {title}
       </span>
       {notifs && (
-        <span className="absolute right-2 top-1/2 size-4 rounded bg-indigo-500 text-xs text-white" >
+        <span className="absolute right-40 size-4 rounded bg-indigo-500 text-xs text-white" >
           {notifs}
         </span>
       )}
-    </button>
+    </Link>
   );
 };
 

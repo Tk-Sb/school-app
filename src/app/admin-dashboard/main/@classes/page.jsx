@@ -28,7 +28,7 @@ export default async function ClassesSection () {
   return (
     <>
       <div className="w-full h-full flex flex-col justify-start rounded-2xl border-[#BFBFBF] border-[3px] ">
-        <div className="w-64 h-fit flex justify-between items-center p-2 border-[#BFBFBF] border-b-[3px] " >
+        <div className="w-full h-fit flex justify-between items-center p-2 border-[#BFBFBF] border-b-[3px] " >
           <DialogForm form={<NewGradeForm></NewGradeForm>} header={"إضافة صف جديد"}>
             <Button title={'إضافة'} icon={<FiPlus></FiPlus>} ></Button>
           </DialogForm>
