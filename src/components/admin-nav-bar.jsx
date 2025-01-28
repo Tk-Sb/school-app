@@ -1,11 +1,11 @@
 'use client'
 
 import { FiHome, FiMail, FiMonitor, FiSettings, FiUsers } from "react-icons/fi";
-import { useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function AdminNavBar () {
-  const [selected, setSelected] = useState("الرئيسية");
+  const selectedRoute = usePathname()
 
   return (
     <>
@@ -14,36 +14,31 @@ export default function AdminNavBar () {
         <Option
           Icon={FiHome}
           title="الرئيسية"
-          selected={selected}
-          setSelected={setSelected}
+          selected={selectedRoute}
           link={"/admin-dashboard/home"}
         />
         <Option
           Icon={FiUsers}
           title="المستخدمين"
-          selected={selected}
-          setSelected={setSelected}
+          selected={selectedRoute}
           link={"/admin-dashboard/users"}
         />
         <Option
           Icon={FiMail}
           title="صندوق البريد"
-          selected={selected}
-          setSelected={setSelected}
+          selected={selectedRoute}
           link={"/"}
         />
         <Option
           Icon={FiMonitor}
           title="إدارة التطبيق"
-          selected={selected}
-          setSelected={setSelected}
+          selected={selectedRoute}
           link={"/"}
         />
         <Option
           Icon={FiSettings}
           title="إعدادات"
-          selected={selected}
-          setSelected={setSelected}
+          selected={selectedRoute}
           link={"/"}
         />
       </div>
@@ -51,12 +46,11 @@ export default function AdminNavBar () {
   );
 };
 
-const Option = ({ Icon, title, selected, setSelected, link, notifs }) => {
+const Option = ({ Icon, title, selected, link, notifs }) => {
   return (
     <Link
       href={link}
-      onClick={() => setSelected(title)}
-      className={`h-10 w-full flex justify-start items-center relative rounded-md transition-colors ${selected === title ? "bg-[#EFEDFB] text-[#7164FA]" : "text-black hover:bg-slate-100"}`} 
+      className={`h-10 w-full flex justify-start items-center relative rounded-md transition-colors ${selected === link ? "bg-[#EFEDFB] text-[#7164FA]" : "text-black hover:bg-slate-100"}`} 
     >
       <div className="w-10 h-full flex justify-center items-center text-lg" >
         <Icon />
