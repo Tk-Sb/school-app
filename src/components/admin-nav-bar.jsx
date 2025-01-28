@@ -16,7 +16,7 @@ export default function AdminNavBar () {
           title="الرئيسية"
           selected={selected}
           setSelected={setSelected}
-          link={"/admin-dashboard/main"}
+          link={"/admin-dashboard/home"}
         />
         <Option
           Icon={FiUsers}

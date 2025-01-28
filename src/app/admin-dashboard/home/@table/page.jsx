@@ -5,6 +5,7 @@ import { publicAnnouncements } from "@/db/schema";
 
 export default async function TableSection () {
   const data = await db.select().from(publicAnnouncements)
+
   // sorting the array by id
   data.sort((a, b) => a.id - b.id)
 
