@@ -106,31 +106,13 @@ export default function DataTable ({ columns, data }) {
             ))
           ) : (
             <TableRow>
-              <TableCell colSpan={columns.length} className="h-24 text-center">
-                No results.
+              <TableCell colSpan={columns.length} className="text-center">
+                لا يوجد
               </TableCell>
             </TableRow>
           )}
         </TableBody>
       </Table>
-    </>
-  )
-}
-
-function Buttons () {
-  return (
-    <>
-      <div className="flex gap-2 ">
-        <DrawerButton form={<NewPublicAnnouncementForm></NewPublicAnnouncementForm>} header={"إعلان عام"}>
-          <Button title={'إضافة'} icon={<FiPlus></FiPlus>} ></Button>
-        </DrawerButton>
-        {/* <DrawerButton form={<NewGradeForm></NewGradeForm>} header={"إضافة صف جديد"}>
-          <Button disabled={true} title={'تعديل'} icon={<FiEdit></FiEdit>} ></Button>
-        </DrawerButton>
-        <DrawerButton form={<NewGradeForm></NewGradeForm>} header={"إضافة صف جديد"}>
-          <Button disabled={true} title={'حذف'} icon={<FiTrash2></FiTrash2>} ></Button>
-        </DrawerButton> */}
-      </div>
     </>
   )
 }
