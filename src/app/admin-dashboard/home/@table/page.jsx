@@ -3,6 +3,8 @@ import { columns } from "./columns";
 import { db } from "@/db/db";
 import { publicAnnouncements } from "@/db/schema";
 
+export const dynamic = 'force-dynamic'
+
 export default async function TableSection () {
   const data = await db.select().from(publicAnnouncements)
 

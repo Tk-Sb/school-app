@@ -6,6 +6,8 @@ import { db } from "@/db/db";
 import { classes, gradeLevels } from "@/db/schema";
 import { FiPlus } from "react-icons/fi";
 
+export const dynamic = 'force-dynamic'
+
 export default async function ClassesSection () {
   const allGrades = await db.select().from(gradeLevels)
   const allClasses = await db.select().from(classes)
