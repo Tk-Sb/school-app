@@ -41,24 +41,24 @@ export const columns = [
     cell: ({ row }) => <div className="flex justify-center items-center ">{row.getValue("id")}</div>,
   },
   {
-    accessorKey: "first-name",
+    accessorKey: "firstName",
     header: ({ table }) => <div className="flex justify-start items-center font-semibold ">الاسم</div>,
-    cell: ({ row }) => <div >{row.getValue("first-name")}</div>,
+    cell: ({ row }) => <div >{row.getValue("firstName")}</div>,
   },
   {
-    accessorKey: "last-name",
+    accessorKey: "lastName",
     header: ({ table }) => <div className="flex justify-start items-center font-semibold ">الكنية</div>,
-    cell: ({ row }) => <div >{row.getValue("last-name")}</div>,
+    cell: ({ row }) => <div >{row.getValue("lastName")}</div>,
   },
   {
-    accessorKey: "father-name",
+    accessorKey: "fatherName",
     header: ({ table }) => <div className="flex justify-start items-center font-semibold ">اسم الأب</div>,
-    cell: ({ row }) => <div >{row.getValue("father-name")}</div>,
+    cell: ({ row }) => <div >{row.getValue("fatherName")}</div>,
   },
   {
-    accessorKey: "mother-name",
+    accessorKey: "motherName",
     header: ({ table }) => <div className="flex justify-start items-center font-semibold ">اسم الأم</div>,
-    cell: ({ row }) => <div >{row.getValue("mother-name")}</div>,
+    cell: ({ row }) => <div >{row.getValue("motherName")}</div>,
   },
   {
     accessorKey: "grade",
@@ -66,8 +66,23 @@ export const columns = [
     cell: ({ row }) => <div >{row.getValue("grade")}</div>,
   },
   {
-    accessorKey: "class",
+    accessorKey: "classId",
     header: ({ table }) => <div className="flex justify-start items-center font-semibold ">الشعبة</div>,
-    cell: ({ row }) => <div >{row.getValue("class")}</div>,
+    cell: ({ row }) => <div >{row.getValue("classId")}</div>,
+  },
+  {
+    accessorKey: "grades",
+    header: ({ table }) => <div className="flex justify-start items-center font-semibold ">العلامات</div>,
+    cell: ({ row }) => <div >{row.getValue("grades")}</div>,
+  },
+  {
+    accessorKey: "notes",
+    header: ({ table }) => <div className="flex justify-start items-center font-semibold ">الملاحظات</div>,
+    cell: ({ row }) => <div >{row.getValue("notes")}</div>,
+  },
+  {
+    accessorKey: "account",
+    header: ({ table }) => <div className="flex justify-start items-center font-semibold ">حساب الطالب</div>,
+    cell: ({ row }) => <div >{row.getValue("account")}</div>,
   },
 ]
