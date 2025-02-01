@@ -9,7 +9,7 @@ import { FiPlus } from "react-icons/fi";
 export default async function ClassesSection () {
   const allGrades = await db.select().from(gradeLevels)
   const allClasses = await db.select().from(classes)
-
+  
   // reformat the fetched data
   const reformattedData = allGrades.map(grade => ({
     id: grade.id,

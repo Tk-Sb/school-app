@@ -17,7 +17,11 @@ export const students = pgTable('students', {
   lastName: varchar('last_name', { length: 50 }).notNull(),
   fatherName: varchar('father_name', { length: 50 }).notNull(),
   motherName: varchar('mother_name', { length: 50 }).notNull(),
-  classId: integer("class_id").references(() => classes.id, {onDelete: "cascade"}).notNull()
+  classId: integer("class_id").references(() => classes.id, {onDelete: "cascade"}).notNull(),
+  grades: varchar("grades", { length: 50 }).array(),
+  notes: varchar("notes", { length: 50 }).array(),
+  username: varchar("username", { length: 50 }).unique().notNull(),
+  password: varchar("password", { length: 255 }).unique().notNull()
 })
 
 export const publicAnnouncements = pgTable('public_announcements', {
