@@ -35,7 +35,7 @@ export default function DataTable ({ columns, data }) {
   
   const result = Object.keys(rowSelection).map((row) => {
     return data[row]?.id
-  })
+  }).filter(e => e !== undefined)
   
   return (
     <>
@@ -44,11 +44,11 @@ export default function DataTable ({ columns, data }) {
           <DialogForm form={<NewPublicAnnouncementForm></NewPublicAnnouncementForm>} header={"إعلان عام"}>
             <Button title={'إضافة'} icon={<FiPlus></FiPlus>} ></Button>
           </DialogForm>
-          <DialogForm form={<EditPublicAnnouncementForm id={data[Object.keys(rowSelection)]?.id} value={data[Object.keys(rowSelection)]?.content} />} header={"تعديل الإعلان"}>
-            <Button disabled={Object.keys(rowSelection).length !== 1} title={'تعديل'} icon={<FiEdit></FiEdit>} ></Button>
+          <DialogForm form={<EditPublicAnnouncementForm id={result[0]} value={data[Object.keys(rowSelection)]?.content} />} header={"تعديل الإعلان"}>
+            <Button disabled={result.length !== 1} title={'تعديل'} icon={<FiEdit></FiEdit>} ></Button>
           </DialogForm>
           <DialogForm form={<PublicAnnouncementDeleteWarning ids={result} />} header={"حذف!"}>
-            <Button disabled={!Object.keys(rowSelection).length} title={'حذف'} icon={<FiTrash2></FiTrash2>} ></Button>
+            <Button disabled={!result.length} title={'حذف'} icon={<FiTrash2></FiTrash2>} ></Button>
           </DialogForm>
         </div>
         <div className="text-base font-semibold ">
