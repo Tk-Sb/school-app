@@ -1,4 +1,4 @@
-import DataTable from "@/components/ui/data-table";
+import DataTable from "@/app/admin-dashboard/home/@table/data-table";
 import { columns } from "./columns";
 
 export default function Loading() {

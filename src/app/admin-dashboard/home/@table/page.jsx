@@ -1,7 +1,7 @@
-import DataTable from "@/components/ui/data-table";
 import { columns } from "./columns";
 import { db } from "@/db/db";
 import { publicAnnouncements } from "@/db/schema";
+import DataTable from "./data-table";
 
 export default async function TableSection () {
   const data = await db.select().from(publicAnnouncements)
