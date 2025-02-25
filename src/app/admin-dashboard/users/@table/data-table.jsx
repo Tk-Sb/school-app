@@ -7,7 +7,7 @@ import {
 
 import { useState } from "react"
 import Button from "../../../../components/ui/button"
-import { EditPublicAnnouncementForm, NewPublicAnnouncementForm, PublicAnnouncementDeleteWarning } from "../../../../components/forms"
+import { EditPublicAnnouncementForm, NewPublicAnnouncementForm, NewStudentForm, PublicAnnouncementDeleteWarning } from "../../../../components/forms"
 import { FiEdit, FiPlus, FiTrash2 } from "react-icons/fi"
 import DialogForm from "../../../../components/dialog-form"
 import TableGrid from "@/components/ui/table-grid"
@@ -32,7 +32,7 @@ export default function DataTable ({ columns, data }) {
     <>
       <div className="w-full h-fit flex justify-between items-center p-2 border-[#BFBFBF] border-b-[3px] " >
         <div className="flex gap-2 ">
-          <DialogForm form={<NewPublicAnnouncementForm></NewPublicAnnouncementForm>} header={"إعلان عام"}>
+          <DialogForm form={<NewStudentForm></NewStudentForm>} header={"إعلان عام"}>
             <Button title={'إضافة'} icon={<FiPlus></FiPlus>} ></Button>
           </DialogForm>
           <DialogForm form={<EditPublicAnnouncementForm id={result[0]} value={data[Object.keys(rowSelection)]?.content} />} header={"تعديل الإعلان"}>

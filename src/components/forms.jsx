@@ -1,6 +1,6 @@
 'use client'
 
-import { AddNewClass, AddNewGrade, AddNewPublicAnnouncement, DeleteClass, DeleteGrade, DeletePublicAnnouncement, EditClassName, EditGradeLevelName, EditPublicAnnouncement } from "@/actions/action"
+import { AddNewClass, AddNewGrade, AddNewPublicAnnouncement, AddNewStudent, DeleteClass, DeleteGrade, DeletePublicAnnouncement, EditClassName, EditGradeLevelName, EditPublicAnnouncement } from "@/actions/action"
 import { useActionState, useState } from "react"
 import { FiEdit, FiPlus, FiTrash2 } from "react-icons/fi"
 import Button from "./ui/button"
@@ -156,6 +156,40 @@ function PublicAnnouncementDeleteWarning ({ ids }) {
   )
 }
 
+function NewStudentForm () {
+  const [state, formAction, isPending] = useActionState(AddNewStudent, null)
+  
+  return (
+    <>
+      <form action={formAction} className="w-full h-fit flex flex-col justify-center items-start gap-2 p-4 ">
+        <div className="w-full h-fit flex flex-col justify-start items-start gap-2">
+          <label htmlFor="first-name" className="text-base font-semibold ">
+            اسم الطالب
+          </label>
+          <input id="first-name" required name="first-name" placeholder="الاسم الأول للطالب" className="w-full h-fit p-2 text-right border-[#BFBFBF] border-[3px] rounded-lg outline-none " />
+          <label htmlFor="last-name" className="text-base font-semibold ">
+            كنية الطالب
+          </label>
+          <input id="last-name" required name="last-name" placeholder="الاسم الأخير للطالب" className="w-full h-fit p-2 text-right border-[#BFBFBF] border-[3px] rounded-lg outline-none " />
+          <label htmlFor="father-name" className="text-base font-semibold ">
+            اسم الأب
+          </label>
+          <input id="father-name" required name="father-name" placeholder="اسم والد الطالب" className="w-full h-fit p-2 text-right border-[#BFBFBF] border-[3px] rounded-lg outline-none " />
+          <label htmlFor="mother-name" className="text-base font-semibold ">
+            اسم الأم
+          </label>
+          <input id="mother-name" required name="mother-name" placeholder="اسم والدة الطالب" className="w-full h-fit p-2 text-right border-[#BFBFBF] border-[3px] rounded-lg outline-none " />
+          <div className="w-full flex gap-3 ">
+            <input id="mother-name" required name="mother-name" placeholder="اسم والدة الطالب" className="w-full h-fit p-2 text-right border-[#BFBFBF] border-[3px] rounded-lg outline-none " />
+            <input id="mother-name" required name="mother-name" placeholder="اسم والدة الطالب" className="w-full h-fit p-2 text-right border-[#BFBFBF] border-[3px] rounded-lg outline-none " />
+          </div>
+        </div>
+        <Button title={'إضافة'} icon={<FiPlus></FiPlus>} ></Button>
+      </form>
+    </>
+  )
+}
+
 export { 
   NewGradeForm, 
   NewClassForm, 
@@ -163,5 +197,6 @@ export {
   DeleteWarning, 
   NewPublicAnnouncementForm, 
   EditPublicAnnouncementForm, 
-  PublicAnnouncementDeleteWarning 
+  PublicAnnouncementDeleteWarning,
+  NewStudentForm,
 }

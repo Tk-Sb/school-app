@@ -18,7 +18,6 @@ export async function AddNewGrade (pv, formData) {
     console.log("error inserting data")
     console.log(err)
   }
-  
 }
 
 export async function AddNewClass (pv, formData) {
@@ -142,6 +141,21 @@ export async function DeletePublicAnnouncement (pv, formData) {
   }
   catch (err) {
     console.log("error deleting data")
+    console.log(err)
+  }
+}
+
+export async function AddNewStudent (pv, formData) {
+  const data = {
+    name: formData.get("grade-name")
+  }
+  try {
+    await db.insert(gradeLevels).values(data)
+    console.log("data inserted")
+    revalidatePath("/admin-dashboard")
+  }
+  catch (err) {
+    console.log("error inserting data")
     console.log(err)
   }
 }
